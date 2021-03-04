@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
 
-
 # partie de code de l'algorithme divide_and_conquer inspire de https://www.learnbay.io/the-skyline-problem/
-# partie de code de merge inspire de
+# partie de code de merge inspire de https://codereview.stackexchange.com/questions/221178/python-program-to-solve-the-skyline-problem
 import argparse
 import time
 import numpy as np
@@ -70,6 +69,12 @@ def divide_and_conquer(buildings):
     right_buildings = divide_and_conquer(buildings[n // 2:])
     return merge_buildings(left_buildings, right_buildings)
 
+
+def time_execution_dv(buildings):
+    start = time.time()
+    divide_and_conquer(buildings)
+    end = time.time()
+    return (end - start) * 1000
 
 # def run(algo, path, print_time):
 #     # 'C:/Users/Sid Ali/PycharmProjects/INF8775/tp1/N1000_0'

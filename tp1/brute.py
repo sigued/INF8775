@@ -2,10 +2,18 @@
 
 
 import heapq
+import time
 from typing import List
 
 
 # code inspirée de https://github.com/dennyzhang/code.dennyzhang.com/tree/master/problems/the-skyline-problem
+
+def time_execution_naif(buildings):
+    start = time.time()
+    getSkyline(buildings)
+    end = time.time()
+    return (end - start) * 1000
+
 def getSkyline(buildings: List[List[int]]):
     points = []
     for i, b in enumerate(buildings):
@@ -34,9 +42,3 @@ def getSkyline(buildings: List[List[int]]):
             skylineTable.append([p[0], -maxH])
     return skylineTable
 
-#
-# if __name__ == "__main__":
-#     result = getSkyline([(2, 9, 10), (3, 7, 15), (5, 12, 12), (15, 20, 10),
-#                          (19, 24, 8)
-#                          ])
-#     print(result)
