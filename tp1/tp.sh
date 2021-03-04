@@ -1,1 +1,2 @@
-#!/bin/sh python3 executable.py "$@"
+#!/bin/sh
+./executable.py "$@"
