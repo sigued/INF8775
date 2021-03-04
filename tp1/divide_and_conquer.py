@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 
 
 
@@ -5,7 +6,6 @@
 # partie de code de merge inspire de
 import argparse
 import time
-
 import numpy as np
 
 
