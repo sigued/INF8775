@@ -1,5 +1,6 @@
 import time
-from tp1 import brute as brute
+
+from tp1 import brute
 
 
 def append_new_point(solution, x_coord, h_curr):

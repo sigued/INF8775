@@ -5,6 +5,7 @@ import numpy as np
 import time
 import divide_and_conquer as dc
 import brute as brute
+import dc_seuil as seuil
 
 
 def run(algo, path, print_time, print_couple):
@@ -15,6 +16,7 @@ def run(algo, path, print_time, print_couple):
     # list_building = [[2, 9, 10], [3, 7, 15], [5, 12, 12], [15, 20, 10], [19, 24, 8]]
 
     if algo == 'brute':
+        # pts_critic = brute.critic_pts(list_building)
         begin = time.time()
         solution = brute.getSkyline(list_building)
         end = time.time()
@@ -22,6 +24,11 @@ def run(algo, path, print_time, print_couple):
     if algo == 'recursif':
         begin = time.time()
         solution = dc.divide_and_conquer(list_building)
+        end = time.time()
+
+    if algo == 'seuil':
+        begin = time.time()
+        solution = seuil.divide_and_conquer_seuil(list_building, 102)
         end = time.time()
 
     if print_couple:

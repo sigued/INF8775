@@ -1,7 +1,7 @@
 import math
 import os
 import random
-from tp1 import dc_seuil as dc_seuil
+from tp1 import dc_seuil, brute
 
 import numpy as np
 

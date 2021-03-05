@@ -7,10 +7,10 @@ python3 seuil.py
 -pour afficher le temps d'ex�cution d'un jeu de donn�es ( voir fichier time_result.csv), ex�cuter la commande:
 python3 timeToCsv.py
 
-G�neration des donn�es:
+G�neration des donn�es:
 $ ./inst_gen.py [-h] -s NB_BATIMENTS [-n NB_EXEMPLAIRES]
 
-Visualition des r�sultat du skyline problem dans le dossier tp1:
+Visualition des r�sultat du skyline problem dans le dossier tp1:
 $ ./tp.sh -a {brute, recursif, seuil} -e CHEMIN_EXEMPLAIRE [-p] [-t]
 Arguments optionnels :
 [-p] affiche, sur chaque ligne, les couples définissant la silhouette de bâtiments, triés selon l’abscisse et sans texte superflu (les deux valeurs d’un couple sont séparées d’un espace) ;
