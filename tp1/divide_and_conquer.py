@@ -11,15 +11,6 @@ import numpy as np
 def is_valid(self, result, new_height):
     return not result or result[-1][1] != new_height
 
-
-def append_point(solution, curr_point, h_curr):
-    if not solution:
-        solution.append([curr_point, h_curr])
-    else:
-        if solution[-1][1] != h_curr:
-            solution.append([curr_point, h_curr])
-
-
 def append_new_point(solution, x_coord, h_curr):
     solution_size = len(solution)
 

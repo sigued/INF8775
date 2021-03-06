@@ -1,7 +1,6 @@
 import time
 
-from tp1 import brute
-
+import brute
 
 def append_new_point(solution, x_coord, h_curr):
     solution_size = len(solution)
@@ -43,7 +42,7 @@ def divide_and_conquer_seuil(buildings, seuil):
     n = len(buildings)
 
     if n <= seuil:
-        return brute.getSkyline(buildings)
+        return brute.brute_algo(buildings)
 
     if n == 0:
         return []

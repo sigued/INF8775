@@ -9,16 +9,15 @@ import dc_seuil as seuil
 
 
 def run(algo, path, print_time, print_couple):
-    # 'C:/Users/Sid Ali/PycharmProjects/INF8775/tp1/N1000_0'
+
     my_buildings = np.loadtxt(path, dtype=int, skiprows=1)
     list_building = my_buildings.tolist()
     # print(list_building)
     # list_building = [[2, 9, 10], [3, 7, 15], [5, 12, 12], [15, 20, 10], [19, 24, 8]]
 
     if algo == 'brute':
-        # pts_critic = brute.critic_pts(list_building)
         begin = time.time()
-        solution = brute.getSkyline(list_building)
+        solution = brute.brute_algo(list_building)
         end = time.time()
 
     if algo == 'recursif':
