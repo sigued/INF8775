@@ -3,29 +3,29 @@
 import argparse
 import numpy as np
 import time
-# import divide_and_conquer as dc
-# import glouton as brute
-# import dc_seuil as seuil
+
 import glouton
-import progdyn
+from ProgDyn import Progdyn
 
 
 def run(algo, path, print_time, print_couple):
     cities = np.loadtxt(path, dtype=int, skiprows=1)
     # city = [tuple(c) for c in cities]
-    cities_index = list(range(len(cities)))
+    data = list(range(len(cities)))
+    # print(data)
+    # data = [1, 2, 3, 4]
+
 
     if algo == 'glouton':
         begin = time.time()
         n, coord, D = glouton.read_cities(cities)
-        tour = glouton.nearest_neighbor(n, 0, D)  # create a greedy tour, visiting city 'i' first
+        tour, dist = glouton.nearest_neighbor(n, 0, D)  # create a greedy tour, visiting city 'i' first
         end = time.time()
 
     if algo == 'progdyn':
         begin = time.time()
-        progdyn.cost_matrix = progdyn.build_cost_matrix(cities)
-        print(progdyn.cost_matrix)
-        dist = progdyn.dynamic_TSP(0, 0, [1, 2, 3, 4])
+        progdyn = Progdyn(0, data, cities)
+        tour, dist = progdyn.main()
         end = time.time()
 
     # if algo == 'seuil':
@@ -33,17 +33,16 @@ def run(algo, path, print_time, print_couple):
     #     solution = seuil.divide_and_conquer_seuil(list_building, 102)
     #     end = time.time()
 
-    # if print_couple:
-    #     n = len(tour)
-    #     print(tour)
-    #     for i in range(n):
-    #         if i == 1 and tour[1] > tour[n-1]:
-    #             print(tour[n-1])
-    #         elif i == (n-1) and tour[1] > tour[n-1]:
-    #             print(tour[1])
-    #         else:
-    #             print(tour[i])
-    #     print(tour[0])
+    if print_couple:
+        print(tour)
+        for city in tour:
+            if city == tour[1] and tour[1] > tour[-2]:
+                print(tour[-2])
+            elif city == tour[-2] and tour[1] > tour[-2]:
+                print(tour[1])
+            else:
+                print(city)
+        print(dist)
 
     if print_time:
         print((end - begin) * 1000)

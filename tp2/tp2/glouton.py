@@ -2,6 +2,9 @@
 
 import math
 import random
+import time
+
+import numpy as np
 
 
 def distL2(x1, y1, x2, y2):
@@ -28,12 +31,14 @@ def mk_matrix(coord, dist):
     -dist -- distance function
     """
     n = len(coord)
-    D = {}  # dictionary to hold n times n matrix
+    D = np.zeros((n, n)).astype(int)  # dictionary to hold n times n matrix
     for i in range(n - 1):
-        for j in range(i + 1, n):
+        for j in range(i, n):
+            if i == j:
+                D[i, j] = 0
             (x1, y1) = coord[i]
             (x2, y2) = coord[j]
-            D[i, j] = dist(x1, y1, x2, y2)
+            D[i, j] = dist(int(x1), int(y1), int(x2), int(y2))
             D[j, i] = D[i, j]
     return n, D
 
@@ -87,7 +92,7 @@ def nearest(last, unvisited, D):
         if D[last, i] < min_dist:
             near = i
             min_dist = D[last, near]
-    return near
+    return near, min_dist
 
 
 def nearest_neighbor(n, i, D):
@@ -102,61 +107,73 @@ def nearest_neighbor(n, i, D):
     unvisited.remove(i)
     last = i
     tour = [i]
+    distance = []
+    # print(D)
     while unvisited != []:
-        next = nearest(last, unvisited, D)
+        next, dist = nearest(last, unvisited, D)
         tour.append(next)
+        distance.append(dist)
         unvisited.remove(next)
         last = next
-    return tour
+    tour.append(i)
+    distance_to_first = D[last, i]
+    distance.append(distance_to_first)
+    return tour, np.sum(distance)
 
 
+def time_glouton(cities):
+    begin = time.time()
+    n, coord, D = read_cities(cities)
+    tour, dist = nearest_neighbor(n, 0, D)  # create a greedy tour, visiting city 'i' first
+    end = time.time()
+    return (end - begin) * 1000
 
-
-
-
-if __name__ == "__main__":
-    """Local search for the Travelling Saleman Problem: sample usage."""
-
-    #
-    # test the functions:
-    #
-
-    # random.seed(1)    # uncomment for having always the same behavior
-    import sys
-
-    if len(sys.argv) == 1:
-        # create a graph with several cities' coordinates
-        coord = [(4, 0), (5, 6), (8, 3), (4, 4), (4, 1), (4, 10), (4, 7), (6, 8), (8, 1)]
-        n, D = mk_matrix(coord, distL2)  # create the distance matrix
-        instance = "toy problem"
-    else:
-        instance = sys.argv[1]
-        n, coord, D = read_cities(instance)  # create the distance matrix
-        # n, coord, D = read_tsplib('INSTANCES/TSP/eil51.tsp')  # create the distance matrix
-
-    # function for printing best found solution when it is found
-    from time import clock
-
-    init = clock()
-
-
-    def report_sol(obj, s=""):
-        print
-        "cpu:%g\tobj:%g\ttour:%s" % \
-        (clock(), obj, s)
-
-
-    print
-    "*** travelling salesman problem ***"
-    print
-
-    # greedy construction
-    print
-    "greedy construction with nearest neighbor + local search:"
-    for i in range(n):
-        tour = nearest_neighbor(n, i, D)  # create a greedy tour, visiting city 'i' first
-        z = length(tour, D)
-        print
-        "nneigh:", tour, z, '  -->  ',
-    print
-
+#
+#
+#
+# if __name__ == "__main__":
+#     """Local search for the Travelling Saleman Problem: sample usage."""
+#
+#     #
+#     # test the functions:
+#     #
+#
+#     # random.seed(1)    # uncomment for having always the same behavior
+#     import sys
+#
+#     if len(sys.argv) == 1:
+#         # create a graph with several cities' coordinates
+#         coord = [(4, 0), (5, 6), (8, 3), (4, 4), (4, 1), (4, 10), (4, 7), (6, 8), (8, 1)]
+#         n, D = mk_matrix(coord, distL2)  # create the distance matrix
+#         instance = "toy problem"
+#     else:
+#         instance = sys.argv[1]
+#         n, coord, D = read_cities(instance)  # create the distance matrix
+#         # n, coord, D = read_tsplib('INSTANCES/TSP/eil51.tsp')  # create the distance matrix
+#
+#     # function for printing best found solution when it is found
+#     from time import clock
+#
+#     init = clock()
+#
+#
+#     def report_sol(obj, s=""):
+#         print
+#         "cpu:%g\tobj:%g\ttour:%s" % \
+#         (clock(), obj, s)
+#
+#
+#     print
+#     "*** travelling salesman problem ***"
+#     print
+#
+#     # greedy construction
+#     print
+#     "greedy construction with nearest neighbor + local search:"
+#     for i in range(n):
+#         tour = nearest_neighbor(n, i, D)  # create a greedy tour, visiting city 'i' first
+#         z = length(tour, D)
+#         print
+#         "nneigh:", tour, z, '  -->  ',
+#     print
+#
