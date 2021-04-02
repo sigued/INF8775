@@ -1,0 +1,11 @@
+seuil de recursivit�: 1, sample size: 10
+seuil de recursivit�: 47, sample size: 100
+seuil de recursivit�: 256, sample size: 1000
+seuil de recursivit�: 52, sample size: 10000
+seuil de recursivit�: 28, sample size: 100000
+seuil de recursivit�: 126, sample size: 50
+seuil de recursivit�: 276, sample size: 500
+seuil de recursivit�: 158, sample size: 5000
+seuil de recursivit�: 28, sample size: 50000
+seuil de recursivit�: 49, sample size: 500000
+seuil de recursivit� moyenne: 102
