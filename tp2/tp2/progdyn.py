@@ -82,17 +82,17 @@ def tsp_best_tour(cities):
     return best_tour
 
 if __name__ == '__main__':
-    cities = np.loadtxt("C:/Users/Sid Ali/PycharmProjects/INF8775-tp2/donnees/DP_N5_0", dtype=int, skiprows=1)
-    cities_index = list(range(len(cities)))
+    cities = np.loadtxt("C:/Users/Sid Ali/PycharmProjects/INF8775-tp2/donnees/DP_N15_0", dtype=int, skiprows=1)
+    cities_index = list(range(1, len(cities)))
 
     cost_matrix = build_cost_matrix(cities)
-    print(cost_matrix)
-    dist = dynamic_TSP(0, 0, [1, 2, 3, 4])
+    # print(cost_matrix)
+    dist = dynamic_TSP(0, 0, cities_index)
     print("------------------------------------>distance")
-    print((iterative_process))
-    print("------------------------------------> tour")
-    tour = tsp_best_tour(cities_index)
-    print(iterative_tour)
+    print(min(iterative_process[-1]))
+    # print("------------------------------------> tour")
+    # # tour = tsp_best_tour(cities_index)
+    # print(iterative_tour)
 
 
 # def dynamic_TSP(main_source, source, cities):

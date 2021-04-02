@@ -59,7 +59,7 @@ def tsp_rec_solve(d):
 
 
 if __name__ == '__main__':
-    cities = np.loadtxt("C:/Users/Sid Ali/PycharmProjects/INF8775-tp2/donnees/hard_N52", dtype=int, skiprows=1)
+    cities = np.loadtxt("C:/Users/Sid Ali/PycharmProjects/INF8775-tp2/donnees/DP_N15_0", dtype=int, skiprows=1)
 
     # d = [
     #     [0, 10, 15, 20],
@@ -68,11 +68,11 @@ if __name__ == '__main__':
     #     [20, 25, 30, 0]]
 
     d = build_cost_matrix(cities)
-    tour = tsp_rec_solve(d)
+    # tour = tsp_rec_solve(d)
     c = 0
     cs = set(range(1, len(d)))
     l, lc = rec_tsp_solve(c, cs)
     print("------------------------------------>distance")
     print(l)
     print("------------------------------------>tour")
-    print(tour)
+    # print(tour)
