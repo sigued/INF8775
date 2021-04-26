@@ -52,7 +52,7 @@ def run(algo, path, print_time, print_couple):
                 print(tour[1])
             else:
                 print(city)
-        print(dist)
+        # print(dist)
         # print((end - begin) * 1000)
 
     if print_time:

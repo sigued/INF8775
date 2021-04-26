@@ -1,10 +1,6 @@
-# code tire d'un projet tire sur github. apres analyse du code nous avons constate qu'il repondait au critere du present tp
+# code tire d'un projet similaire trouve sur github. apres analyse du code nous avons constate qu'il repondait au critere du present tp
 # nous avons adapte la construction des noeuds aux fichiers de tests que nous avions, mais la logique est tire du projet suivant:
 # https://github.com/sleepy-juan/Travelling-Salesman-Problem/tree/e6aca323854ccceb306093c4e49d25c4dc43e1e0/tsp
-
-# tsp.py
-# - TSP solver
-#
 # Writtenn by Juan Lee (juanlee@kaist.ac.kr)
 
 import time
@@ -18,7 +14,7 @@ import numpy as np
 # node structure
 # id: {id, x, y}
 def distanceBtw(f, t):
-    return ((f['x'] - t['x']) ** 2 + (f['y'] - t['y']) ** 2) ** 0.5
+    return ((int(f['x']) - int(t['x'])) ** 2 + (int(f['y']) - int(t['y'])) ** 2) ** 0.5
 
 # path structure
 # [p1, p2, ..., pn]
